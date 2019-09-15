@@ -1,0 +1,65 @@
+---
+title: 'Exercise 3: R Markdown Presentation Slides'
+author: Tracy Wang
+date: September 2019
+autosize: true
+output: 
+  ioslides_presentation:
+    incremental: true
+    template: quarterly-report.html
+
+---
+
+
+# Slides!
+
+This will be a presentation version of the Orange dataset exploration presented in Exercise 2.
+
+## Orange
+
+Orange is a dataset about the growth of five orange trees. This is a record of their trunk circumferences (in cm) at certain ages (in days).
+
+The headers for the Orange dataset, as determined through the names() function, are:
+
+```{r load, warning=FALSE, echo=FALSE}
+library(tibble)
+library(gapminder)
+library(DT)
+
+names(Orange)
+```
+
+## {.smaller}
+
+The full dataset, presented as a tibble:
+
+```{r tibble, warning=FALSE, echo=FALSE}
+datatable(as_tibble(Orange))
+```
+
+## Summary {.smaller}
+
+Here is a summary of the Orange dataset using the summary() function:
+
+```{r summary, warning=FALSE, echo=FALSE}
+library(knitr)
+kable(summary(Orange), align='c', caption="Summary of Orange dataset columns")
+```
+
+
+## Plot
+
+And here is a plot of tree circumference versus age:
+
+```{r plot, warning=FALSE, echo=FALSE}
+plot(x=Orange[,2], y=Orange[,3], xlab="Age (days)", ylab="Circumference (cm)", main="Tree size with age", type='p')
+abline(lm(circumference~age, data=Orange), col='red')
+```
+
+## Observations | some (very) brief notes 
+
+- Obviously we cannot conclude this is a linear relationship. 
+- However, the goal here was simply to add a trendline, and that was a success!
+
+# The end
+
